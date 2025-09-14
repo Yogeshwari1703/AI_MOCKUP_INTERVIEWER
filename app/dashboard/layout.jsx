@@ -1,7 +1,7 @@
 'use client'
 
 import React from 'react'
-import Header from './_components/Header';
+import Header from './_components/header';
 import AddNewInterview from './_components/AddNewInterview';
 function DashboardLayout({children}) {
   return (
