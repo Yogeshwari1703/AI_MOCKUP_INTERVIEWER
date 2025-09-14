@@ -9,7 +9,8 @@
     "lint": "next lint",
     "db:push": "npx drizzle-kit push",
     "db:studio": "npx drizzle-kit studio",
-    "postinstall": "npx --yes lightningcss-cli --version || true"
+     "postinstall": "LIGHTNINGCSS_PLATFORM=linux-x64-gnu npx lightningcss-cli --version || true"
+
   },
   "dependencies": {
     "@clerk/nextjs": "^6.28.1",
