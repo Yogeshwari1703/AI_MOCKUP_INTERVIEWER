@@ -9,8 +9,7 @@
     "lint": "next lint",
     "db:push": "npx drizzle-kit push",
     "db:studio": "npx drizzle-kit studio",
-     "postinstall": "LIGHTNINGCSS_PLATFORM=linux-x64-gnu npx lightningcss-cli --version || true"
-
+    "postinstall": "LIGHTNINGCSS_PLATFORM=linux-x64-gnu npx lightningcss-cli --version || true"
   },
   "dependencies": {
     "@clerk/nextjs": "^6.28.1",
@@ -22,16 +21,20 @@
     "@radix-ui/react-collapsible": "^1.1.12",
     "@radix-ui/react-dialog": "^1.1.14",
     "@radix-ui/react-slot": "^1.2.3",
+    "autoprefixer": "^10.4.21",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "dotenv": "^17.2.2",
     "drizzle-orm": "^0.44.5",
+    "lightningcss": "^1.30.1",
+    "lightningcss-cli": "^1.30.1",
     "lucide-react": "^0.536.0",
     "mime": "^4.0.7",
     "moment": "^2.30.1",
-    "next": "^15.5.2",
+    "next": "^15.5.3",
     "next-themes": "^0.4.6",
     "pg": "^8.16.3",
+    "postcss": "^8.5.6",
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "react-hook-speech-to-text": "^0.8.0",
@@ -45,7 +48,7 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "drizzle-kit": "^0.31.4",
-    "tailwindcss": "^4",
+    "tailwindcss": "^4.1.13",
     "tsx": "^4.20.3",
     "tw-animate-css": "^1.3.6",
     "typescript": "5.9.2"
