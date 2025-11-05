@@ -13,13 +13,13 @@ const Page = () => {
 
   return (
     <main>
-      <Header />
+      {/* <Header /> */}
       {/* <Button onClick={() => router.push("/dashboard")}>
 
         Click Me
       </Button> */}
       < HeroSection />
-      <Footer />
+      {/* <Footer /> */}
     </main>
   );
 };
