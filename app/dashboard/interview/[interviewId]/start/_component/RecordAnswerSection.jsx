@@ -1,373 +1,3 @@
-// "use client";
-// import React,{useState,useEffect} from 'react'
-// import Webcam from 'react-webcam'
-// import Image from 'next/image'
-// import { Button } from '@/components/ui/button'
-// import useSpeechToText from 'react-hook-speech-to-text';
-// import { Mic,StopCircle } from "lucide-react"; 
-// import { toast } from "sonner";
-// import moment from "moment";
-// import { chatSession } from "@/utils/geminiAiModel.js";
-// import { useUser } from '@clerk/nextjs';
-// import { db } from "@/utils/db";
-// import { UserAnswer } from "@/utils/schema";
-
-
-
-
-// function RecordAnswerSection( {mockInterviewQuestion,activeQuestionIndex ,interviewData}) {
-//   const {user}=useUser();
-//   const [userAnswer,setUserAnswer]=useState('');
-//   const [loading,setLoading]=useState(false);
-//   const {
-//     error,
-//     interimResult,
-//     isRecording,
-//     results,
-//     startSpeechToText,
-//     stopSpeechToText,
-//     setResults
-//   } = useSpeechToText({
-//     continuous: true,
-//     useLegacyResults: false
-//   });
-
-
-//   useEffect(() => {
-//   if (results.length > 0) {
-//     const transcript = results.map(r => r.transcript).join(" ");
-//     setUserAnswer(transcript);
-//   }
-// }, [results]);
-
-// useEffect(()=>{
-//   if(!isRecording&&userAnswer.length>10){
-//     UpdateUserAnswer();
-//   }
-//     // if(userAnswer?.length<10){
-//     //     setLoading(false);
-//     //     toast.error('Error while saving your answer , please record again')
-//     //     return ;
-//     //   }
-// },[userAnswer]);
-
-
-// const StartStopRecording =async () => {
-//   if (isRecording) {
-     
-//       stopSpeechToText(); 
-      
-      
-//        await UpdateUserAnswer();
-
-
-//   } else {
-//     setUserAnswer(""); // clear old answer before new recording
-//     startSpeechToText();
-//   }
-// };
-
-// const UpdateUserAnswer=async()=>{
-
-//   console.log(userAnswer);
-//       setLoading(true);
-//       const feedbackPrompt="Question:"+mockInterviewQuestion[activeQuestionIndex]?.question+
-//       ",User Answer:"+userAnswer+
-//       ",Depends on question and user answer for given interview question "+
-//       " please give us rating out of 10(ex. 2/10) for answer and feedback as area of improvement if any"+
-//       " in just 3-5 lines to improve it in JSON format with rating field and feedback field"
-
-
-      
-
-//       const result=await chatSession.sendMessage(feedbackPrompt);
-//       const mockJsonResp=(result.response.text().replace('```json', '').replace('```', ''))
-//       console.log(mockJsonResp);
-//       const JsonFeedbackResp=JSON.parse(mockJsonResp);
-
-//       const resp=await db.insert(UserAnswer)
-//       .values({
-//         mockIdRef:interviewData?.mockId,
-//         question:mockInterviewQuestion[activeQuestionIndex]?.question,
-//         correctAns:mockInterviewQuestion[activeQuestionIndex]?.answer,
-//         userAns:userAnswer,
-//         feedback:JsonFeedbackResp?.feedback,
-//         rating:JsonFeedbackResp?.rating,
-//         userEmail:user?.primaryEmailAddress?.emailAddress,
-//         createdAt:moment().format('DD-MM-YYYY')
-        
-//       })
-
-//       if(resp){
-//         toast('User Answer recorded successfully')
-//         setUserAnswer('');
-//         setResults([]);
-//       }
-//        setResults([]);
-      
-//       setLoading(false);
-// }
-
-
-
-//   return (
-//     <div className='flex flex-col items-center justify-center'>
-//     <div className="flex flex-col my-20 justify-center items-center bg-black rounded-lg p-5 relative ">
-//         <Image src={'/webcam.png'} alt="webcam" width={200} height={200} className="absolute"/>
-//       <Webcam 
-//         mirrored={true}
-//         style={{
-//         height:300,
-//         width:'100%',
-//         zIndex:10,
-//       }}
-//         />
-//     </div>
-// <Button  disabled={loading} variant="outline" className="my-10" onClick={StartStopRecording}>
-//   {isRecording ? (
-//     <h2 className='text-red-600 flex gap-2 items-center'>
-//       <StopCircle/> Stop Recording
-//     </h2>
-//   ) : (
-//     <h2 className='text-primary flex gap-2 items-center'>
-//       <Mic/> Record Answer
-//     </h2>
-//   )}
-// </Button>
-
-
-//     </div>
-//   )
-// }
-
-// export default RecordAnswerSection
-
-
-
-
-// "use client";
-// import React,{useState,useEffect} from 'react'
-// import Webcam from 'react-webcam'
-// import Image from 'next/image'
-// import { Button } from '@/components/ui/button'
-// import useSpeechToText from 'react-hook-speech-to-text';
-// import { Mic,StopCircle, LoaderCircle } from "lucide-react"; 
-// import { toast } from "sonner";
-// import moment from "moment";
-// import { chatSession } from "@/utils/geminiAiModel.js";
-// import { useUser } from '@clerk/nextjs';
-// import { db } from "@/utils/db";
-// import { UserAnswer } from "@/utils/schema";
-
-// function RecordAnswerSection( {mockInterviewQuestion,activeQuestionIndex ,interviewData}) {
-//   const {user}=useUser();
-//   const [userAnswer,setUserAnswer]=useState('');
-//   const [loading,setLoading]=useState(false);
-//   const {
-//     error,
-//     interimResult,
-//     isRecording,
-//     results,
-//     startSpeechToText,
-//     stopSpeechToText,
-//     setResults
-//   } = useSpeechToText({
-//     continuous: true,
-//     useLegacyResults: false
-//   });
-
-//   useEffect(() => {
-//   if (results.length > 0) {
-//     const transcript = results.map(r => r.transcript).join(" ");
-//     setUserAnswer(transcript);
-//   }
-// }, [results]);
-
-// useEffect(()=>{
-//   if(!isRecording&&userAnswer.length>10){
-//     UpdateUserAnswer();
-//   }
-// },[userAnswer]);
-
-// const StartStopRecording =async () => {
-//   if (isRecording) {
-//       stopSpeechToText(); 
-//       await UpdateUserAnswer();
-//   } else {
-//     setUserAnswer(""); // clear old answer before new recording
-//     startSpeechToText();
-//   }
-// };
-
-// const UpdateUserAnswer=async()=>{
-//   console.log(userAnswer);
-//       setLoading(true);
-//       const feedbackPrompt="Question:"+mockInterviewQuestion[activeQuestionIndex]?.question+
-//       ",User Answer:"+userAnswer+
-//       ",Depends on question and user answer for given interview question "+
-//       " please give us rating out of 10(ex. 2/10) for answer and feedback as area of improvement if any"+
-//       " in just 3-5 lines to improve it in JSON format with rating field and feedback field"
-
-//       const result=await chatSession.sendMessage(feedbackPrompt);
-//       const mockJsonResp=(result.response.text().replace('```json', '').replace('```', ''))
-//       console.log(mockJsonResp);
-//       const JsonFeedbackResp=JSON.parse(mockJsonResp);
-
-//       const resp=await db.insert(UserAnswer)
-//       .values({
-//         mockIdRef:interviewData?.mockId,
-//         question:mockInterviewQuestion[activeQuestionIndex]?.question,
-//         correctAns:mockInterviewQuestion[activeQuestionIndex]?.answer,
-//         userAns:userAnswer,
-//         feedback:JsonFeedbackResp?.feedback,
-//         rating:JsonFeedbackResp?.rating,
-//         userEmail:user?.primaryEmailAddress?.emailAddress,
-//         createdAt:moment().format('DD-MM-YYYY')
-//       })
-
-//       if(resp){
-//         toast.success('✅ Answer recorded successfully!');
-//         setUserAnswer('');
-//         setResults([]);
-//       }
-//       setResults([]);
-//       setLoading(false);
-// }
-
-//   return (
-//     <div className="bg-gray-800/70 backdrop-blur-sm rounded-2xl p-6 border border-purple-500/30 shadow-lg shadow-purple-500/10">
-//       {/* Header */}
-//       <div className="flex items-center gap-3 mb-6">
-//         <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-teal-400 text-white rounded-xl flex items-center justify-center text-sm shadow-lg shadow-purple-500/30">
-//           <i className="fas fa-microphone"></i>
-//         </div>
-//         <div>
-//           <h3 className="text-white font-semibold text-lg">Record Your Answer</h3>
-//           <p className="text-gray-400 text-sm">Speak clearly and confidently</p>
-//         </div>
-//       </div>
-
-//       {/* Webcam Section */}
-//       <div className="relative mb-6">
-//         <div className="relative bg-black rounded-2xl overflow-hidden aspect-video border-2 border-gray-600">
-//           <Webcam 
-//             mirrored={true}
-//             className="w-full h-full object-cover"
-//           />
-          
-//           {/* Recording Indicator */}
-//           {isRecording && (
-//             <div className="absolute top-4 right-4 flex items-center gap-2 bg-red-500/90 text-white px-3 py-1 rounded-full">
-//               <div className="w-2 h-2 bg-white rounded-full animate-pulse"></div>
-//               <span className="text-sm font-medium">RECORDING</span>
-//             </div>
-//           )}
-          
-//           {/* Device Status */}
-//           <div className="absolute bottom-4 left-4 flex items-center gap-2 bg-black/70 text-white px-3 py-1 rounded-full">
-//             <i className={`fas fa-microphone ${isRecording ? 'text-green-400' : 'text-gray-400'}`}></i>
-//             <span className="text-sm">{isRecording ? 'Microphone Active' : 'Microphone Ready'}</span>
-//           </div>
-          
-//           <div className="absolute bottom-4 right-4 flex items-center gap-2 bg-black/70 text-white px-3 py-1 rounded-full">
-//             <i className="fas fa-video text-green-400"></i>
-//             <span className="text-sm">Camera Active</span>
-//           </div>
-//         </div>
-//       </div>
-
-//       {/* Transcription Preview */}
-//       {(userAnswer || interimResult) && (
-//         <div className="mb-6 bg-gray-700/50 rounded-xl p-4 border border-gray-600">
-//           <div className="flex items-center gap-2 mb-2">
-//             <i className="fas fa-text-height text-purple-400 text-sm"></i>
-//             <h4 className="text-white font-medium text-sm">Live Transcription</h4>
-//           </div>
-//           <p className="text-gray-300 text-sm leading-relaxed">
-//             {userAnswer || interimResult}
-//           </p>
-//           {interimResult && !userAnswer && (
-//             <div className="flex items-center gap-2 mt-2">
-//               <div className="flex gap-1">
-//                 <div className="w-1 h-1 bg-purple-400 rounded-full animate-bounce"></div>
-//                 <div className="w-1 h-1 bg-purple-400 rounded-full animate-bounce" style={{animationDelay: '0.1s'}}></div>
-//                 <div className="w-1 h-1 bg-purple-400 rounded-full animate-bounce" style={{animationDelay: '0.2s'}}></div>
-//               </div>
-//               <span className="text-purple-400 text-xs">Listening...</span>
-//             </div>
-//           )}
-//         </div>
-//       )}
-
-//       {/* Recording Controls */}
-//       <div className="flex flex-col items-center gap-4">
-//         <Button 
-//           disabled={loading}
-//           onClick={StartStopRecording}
-//           className={`w-full max-w-sm font-semibold shadow-lg transition-all duration-300 hover:scale-105 ${
-//             isRecording 
-//               ? 'bg-red-500 text-white hover:bg-red-600 shadow-red-500/30' 
-//               : 'bg-gradient-to-r from-purple-500 to-teal-400 text-white shadow-purple-500/30 hover:shadow-xl'
-//           } disabled:opacity-50 disabled:cursor-not-allowed`}
-//         >
-//           {loading ? (
-//             <span className="flex items-center gap-2">
-//               <LoaderCircle className="w-4 h-4 animate-spin" />
-//               Processing Answer...
-//             </span>
-//           ) : isRecording ? (
-//             <span className="flex items-center gap-2">
-//               <StopCircle className="w-4 h-4" />
-//               Stop Recording & Save
-//             </span>
-//           ) : (
-//             <span className="flex items-center gap-2">
-//               <Mic className="w-4 h-4" />
-//               Start Recording Answer
-//             </span>
-//           )}
-//         </Button>
-
-//         {/* Tips */}
-//         <div className="text-center">
-//           <p className="text-gray-400 text-xs">
-//             {isRecording 
-//               ? "Speak clearly into your microphone. Click stop when finished."
-//               : "Click to start recording your answer. Speak clearly and confidently."
-//             }
-//           </p>
-//         </div>
-//       </div>
-
-//       {/* Status Information */}
-//       <div className="mt-6 p-4 bg-gray-700/30 rounded-lg border border-gray-600">
-//         <div className="flex items-center gap-3">
-//           <i className="fas fa-info-circle text-teal-400"></i>
-//           <div>
-//             <h4 className="text-teal-400 font-medium text-sm">AI Feedback</h4>
-//             <p className="text-gray-300 text-xs">
-//               Your answer will be analyzed by AI and you'll receive instant feedback with a rating.
-//             </p>
-//           </div>
-//         </div>
-//       </div>
-
-//       {/* Add Font Awesome CSS */}
-//       <style jsx>{`
-//         @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
-//       `}</style>
-//     </div>
-//   )
-// }
-
-// export default RecordAnswerSection
-
-
-
-
-
-
-
 
 "use client";
 import React, { useState, useEffect, useRef } from 'react'
@@ -376,7 +6,6 @@ import { Button } from '@/components/ui/button'
 import { Mic, StopCircle, LoaderCircle, AlertCircle } from "lucide-react"; 
 import { toast } from "sonner";
 import moment from "moment";
-import { chatSession } from "@/utils/geminiAiModel.js";
 import { useUser } from '@clerk/nextjs';
 import { db } from "@/utils/db";
 import { UserAnswer } from "@/utils/schema";
@@ -513,7 +142,10 @@ function RecordAnswerSection({ mockInterviewQuestion, activeQuestionIndex, inter
         setUserAnswer('');
         setInterimResult('');
         setSpeechError(null);
-        recognitionRef.current.stop();
+        
+        try {
+          recognitionRef.current.stop();
+        } catch (e) {}
 
         setTimeout(() => {
           if (recognitionRef.current && !isRecording) {
@@ -539,31 +171,30 @@ function RecordAnswerSection({ mockInterviewQuestion, activeQuestionIndex, inter
         isStartingRef.current = false;
         recognitionRef.current.stop();
         setIsRecording(false);
+        
         setTimeout(() => {
           const finalAnswer = (userAnswer + ' ' + interimResult).trim();
+          console.log('🔄 Final answer ready for saving:', finalAnswer);
+          
           if (finalAnswer.length >= 5) {
             processUserAnswer(finalAnswer);
           } else if (finalAnswer.length > 0) {
-            toast.error("Please provide a longer answer");
+            toast.error("Please provide a longer answer (minimum 5 characters)");
+          } else {
+            toast.error("No answer recorded. Please try again.");
           }
-        }, 500);
+        }, 800);
       } catch {
         setIsRecording(false);
       }
     }
   };
 
-  const safeStopRecording = () => {
-    if (recognitionRef.current) {
-      try { recognitionRef.current.abort(); } catch (e) {}
-    }
-    setIsRecording(false);
-    isStartingRef.current = false;
-  };
-
-  const processUserAnswer = async (answerToProcess = userAnswer) => {
+  const processUserAnswer = async (answerToProcess) => {
+    console.log('🚀 Starting to save answer to database:', answerToProcess);
+    
     if (!answerToProcess || answerToProcess.trim().length < 5) {
-      toast.error("Answer too short");
+      toast.error("Please provide a longer answer");
       return;
     }
 
@@ -571,41 +202,46 @@ function RecordAnswerSection({ mockInterviewQuestion, activeQuestionIndex, inter
 
     try {
       const currentQuestion = mockInterviewQuestion[activeQuestionIndex];
-      if (!currentQuestion) return;
+      
+      if (!currentQuestion) {
+        toast.error("No question found");
+        return;
+      }
 
-      const feedbackPrompt = `
-        Question: ${currentQuestion.question}
-        User's Answer: ${answerToProcess}
-        
-        Provide:
-        {
-          "rating": "X/10",
-          "feedback": "Few lines of feedback"
-        }
-      `;
-
-      const result = await chatSession.sendMessage(feedbackPrompt);
-      const responseText = result.response.text();
-      const cleanJson = responseText.replace(/```json|```/g, '').trim();
-      const JsonFeedbackResp = JSON.parse(cleanJson);
-
-      await db.insert(UserAnswer).values({
+      console.log('💾 Preparing database data...');
+      
+      // Prepare data for database
+      const dbData = {
         mockIdRef: interviewData?.mockId,
         question: currentQuestion.question,
-        correctAns: currentQuestion.answer || "N/A",
+        correctAns: currentQuestion.answer || "No correct answer provided",
         userAns: answerToProcess,
-        feedback: JsonFeedbackResp?.feedback || "No feedback",
-        rating: JsonFeedbackResp?.rating || "0/10",
+        feedback: "AI feedback temporarily disabled - answer saved successfully",
+        rating: "Pending review",
         userEmail: user?.primaryEmailAddress?.emailAddress,
         createdAt: moment().format('DD-MM-YYYY')
-      });
+      };
 
-      toast.success('✅ Answer saved!');
-      setUserAnswer('');
-      setInterimResult('');
+      console.log('📦 Database data:', dbData);
+
+      // Save to database - SIMPLE VERSION WITHOUT AI
+      try {
+        console.log('💫 Attempting database insert...');
+        const result = await db.insert(UserAnswer).values(dbData);
+        console.log('✅ Database insert result:', result);
+        
+        toast.success('✅ Answer saved successfully!');
+        setUserAnswer('');
+        setInterimResult('');
+        
+      } catch (dbError) {
+        console.error('❌ Database error:', dbError);
+        throw new Error(`Database failed: ${dbError.message}`);
+      }
+
     } catch (error) {
-      console.error('Error processing answer:', error);
-      toast.error('Error while saving answer.');
+      console.error('❌ Error saving answer:', error);
+      toast.error('Failed to save answer. Please try again.');
     } finally {
       setLoading(false);
     }
@@ -616,8 +252,13 @@ function RecordAnswerSection({ mockInterviewQuestion, activeQuestionIndex, inter
     else startSpeechToText();
   };
 
+  // Reset when question changes
   useEffect(() => {
-    safeStopRecording();
+    if (recognitionRef.current) {
+      try { recognitionRef.current.stop(); } catch (e) {}
+    }
+    setIsRecording(false);
+    isStartingRef.current = false;
     setUserAnswer('');
     setInterimResult('');
     setSpeechError(null);
@@ -642,7 +283,9 @@ function RecordAnswerSection({ mockInterviewQuestion, activeQuestionIndex, inter
   return (
     <div className="bg-gray-800/70 backdrop-blur-sm rounded-2xl p-6 border border-purple-500/30 shadow-lg">
       <div className="flex items-center gap-3 mb-6">
-        <div className={`w-10 h-10 ${isRecording ? 'bg-red-500 animate-pulse' : 'bg-gradient-to-br from-purple-500 to-teal-400'} text-white rounded-xl flex items-center justify-center`}>
+        <div className={`w-10 h-10 ${
+          isRecording ? 'bg-red-500 animate-pulse' : 'bg-gradient-to-br from-purple-500 to-teal-400'
+        } text-white rounded-xl flex items-center justify-center`}>
           <Mic className="w-5 h-5" />
         </div>
         <div>
@@ -665,6 +308,15 @@ function RecordAnswerSection({ mockInterviewQuestion, activeQuestionIndex, inter
         </div>
       </div>
 
+      {/* Debug Info */}
+      <div className="mb-4 p-3 bg-blue-500/10 border border-blue-500/30 rounded-lg">
+        <p className="text-blue-400 text-xs font-mono">
+          🔧 Status: {loading ? 'Saving...' : isRecording ? 'Recording' : 'Ready'} | 
+          Answer: {userAnswer.length} chars | 
+          AI: Disabled (Using direct save)
+        </p>
+      </div>
+
       <div className="mb-6 bg-gray-700/50 rounded-xl p-4 border border-gray-600 min-h-[120px]">
         <h4 className="text-white font-medium text-sm mb-2">
           {isRecording ? 'Live Transcription' : 'Your Answer'}
@@ -673,7 +325,7 @@ function RecordAnswerSection({ mockInterviewQuestion, activeQuestionIndex, inter
           {loading ? (
             <div className="flex items-center justify-center h-16">
               <LoaderCircle className="w-6 h-6 animate-spin text-purple-400 mr-2" />
-              <span className="text-purple-400">Processing your answer...</span>
+              <span className="text-purple-400">Saving your answer...</span>
             </div>
           ) : userAnswer || interimResult ? (
             <p className="text-white text-sm bg-purple-500/10 p-3 rounded-lg border border-purple-500/30">
@@ -688,11 +340,13 @@ function RecordAnswerSection({ mockInterviewQuestion, activeQuestionIndex, inter
       <Button 
         disabled={loading}
         onClick={handleStartStopRecording}
-        className={`w-full font-semibold ${isRecording ? 'bg-red-500 hover:bg-red-600' : 'bg-gradient-to-r from-purple-500 to-teal-400 hover:opacity-90'} text-white`}
+        className={`w-full font-semibold ${
+          isRecording ? 'bg-red-500 hover:bg-red-600' : 'bg-gradient-to-r from-purple-500 to-teal-400 hover:opacity-90'
+        } text-white transition-all duration-300`}
       >
         {loading ? (
           <>
-            <LoaderCircle className="w-4 h-4 animate-spin mr-2" /> Processing...
+            <LoaderCircle className="w-4 h-4 animate-spin mr-2" /> Saving Answer...
           </>
         ) : isRecording ? (
           <>
@@ -704,6 +358,15 @@ function RecordAnswerSection({ mockInterviewQuestion, activeQuestionIndex, inter
           </>
         )}
       </Button>
+
+      {/* Success Message Area */}
+      {!loading && userAnswer.length > 0 && !isRecording && (
+        <div className="mt-4 p-3 bg-green-500/10 border border-green-500/30 rounded-lg">
+          <p className="text-green-400 text-sm">
+            ✅ Answer ready to save! Click "Stop Recording & Save" above.
+          </p>
+        </div>
+      )}
     </div>
   );
 }
