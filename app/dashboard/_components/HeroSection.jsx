@@ -284,7 +284,7 @@ const HeroSection = () => {
                   onClick={() => handleButtonClick('Start Free Trial')}
                 >
                   <Link href="/dashboard" className="block w-full h-full">
-                      Start Practice Now
+                      Start Practicing Now
                    </Link>
                   
                 </button>
