@@ -3,12 +3,12 @@ import Link from 'next/link';
 import { useUser } from '@clerk/nextjs';
 
 const HeroSection = () => {
-  const { isSignedIn, user } = useUser(); // Add this line
+  const { isSignedIn, user } = useUser();
   const [isVisible, setIsVisible] = useState({});
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [isRecording, setIsRecording] = useState(false);
   const [recordedAnswers, setRecordedAnswers] = useState([]);
-  const [timeLeft, setTimeLeft] = useState(180); // 3 minutes per question
+  const [timeLeft, setTimeLeft] = useState(180);
   const videoRef = useRef(null);
   const [stream, setStream] = useState(null);
 
@@ -54,7 +54,6 @@ const HeroSection = () => {
         scrollToSection(tryRef);
         break;
       default:
-        // For home, scroll to top
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   };
@@ -110,12 +109,18 @@ const HeroSection = () => {
   const startCamera = async () => {
     try {
       const mediaStream = await navigator.mediaDevices.getUserMedia({ 
-        video: true, 
+        video: { 
+          facingMode: 'user', // Use front camera
+          width: { ideal: 1280 },
+          height: { ideal: 720 }
+        }, 
         audio: true 
       });
       setStream(mediaStream);
       if (videoRef.current) {
         videoRef.current.srcObject = mediaStream;
+        // Add mirror effect for front camera
+        videoRef.current.style.transform = 'scaleX(-1)';
       }
     } catch (error) {
       console.error('Error accessing camera:', error);
@@ -128,19 +133,17 @@ const HeroSection = () => {
     } else if (buttonText.includes('Log In')) {
       // alert('Redirecting to login page...');
     } else if (buttonText.includes('Watch Demo')) {
-      // Scroll to simulation section instead of showing alert
       scrollToSection(tryRef);
     }
   };
 
   const handleStartRecording = () => {
     setIsRecording(true);
-    setTimeLeft(180); // Reset timer to 3 minutes
+    setTimeLeft(180);
   };
 
   const handleStopRecording = () => {
     setIsRecording(false);
-    // Save the recorded answer
     const newAnswer = {
       question: questions[currentQuestion],
       duration: 180 - timeLeft,
@@ -228,7 +231,6 @@ const HeroSection = () => {
             </div>
             <div className="flex gap-4">
               {isSignedIn ? (
-                // Show Dashboard button for logged-in users
                 <button 
                   className="px-6 py-3 bg-gradient-to-r from-purple-500 to-teal-400 text-white rounded-lg font-semibold shadow-lg shadow-purple-500/30 hover:bg-gradient-to-r hover:from-purple-600 hover:to-teal-500 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl flex items-center gap-2"
                 >
@@ -238,13 +240,12 @@ const HeroSection = () => {
                   </Link>
                 </button>
               ) : (
-                // Show Login/Signup buttons for logged-out users
                 <>
                   <button 
                     className="px-6 py-3 border border-purple-500 text-purple-500 rounded-lg font-semibold hover:bg-purple-500/10 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
                     onClick={() => handleButtonClick('Log In')}
                   >
-                    <Link href="/dashboard" className="block w-full h-full">
+                    <Link href="/sign-in" className="block w-full h-full">
                       Log In
                     </Link>
                   </button>
@@ -252,7 +253,7 @@ const HeroSection = () => {
                     className="px-6 py-3 bg-purple-500 text-white rounded-lg font-semibold shadow-lg shadow-purple-500/30 hover:bg-purple-600 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
                     onClick={() => handleButtonClick('Sign Up Free')}
                   >
-                    <Link href="/dashboard" className="block w-full h-full">
+                    <Link href="/sign-up" className="block w-full h-full">
                       Sign Up 
                     </Link>
                   </button>
@@ -263,7 +264,7 @@ const HeroSection = () => {
         </div>
       </header>
 
-      {/* Hero Section - Add ref for home */}
+      {/* Hero Section */}
       <section 
         ref={homeRef}
         className="pt-40 pb-20 bg-gradient-to-br from-gray-900 to-gray-950 relative overflow-hidden"
@@ -283,10 +284,9 @@ const HeroSection = () => {
                   className="px-8 py-4 bg-purple-500 text-white rounded-lg font-semibold text-lg shadow-lg shadow-purple-500/30 hover:bg-purple-600 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
                   onClick={() => handleButtonClick('Start Free Trial')}
                 >
-                  <Link href="/dashboard" className="block w-full h-full">
-                      Start Interview
-                   </Link>
-                  
+                  <Link href="/sign-up" className="block w-full h-full">
+                    Start Interview
+                  </Link>
                 </button>
                 <button 
                   className="px-8 py-4 border border-purple-500 text-purple-500 rounded-lg font-semibold text-lg hover:bg-purple-500/10 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
@@ -312,75 +312,75 @@ const HeroSection = () => {
         </div>
       </section>
 
-      {/* Features Section - Add ref */}
-      {/* Features Section - Add ref */}
-<section 
-  ref={featuresRef}
-  className="py-20 bg-gray-800/50 relative"
->
-  <div className="container mx-auto px-4">
-    <div className="text-center mb-16">
-      <h2 className="text-4xl font-bold mb-4">Advanced AI Features</h2>
-      <p className="text-xl text-gray-400 max-w-2xl mx-auto">
-        Our platform offers cutting-edge technology to prepare you for any interview scenario
-      </p>
-    </div>
-    
-    {/* Main Feature Cards */}
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-      {[
-        { id: 'feature1', icon: 'fa-robot', title: 'Adaptive AI Interviewers', desc: 'Practice with AI that adapts to your responses, creating unique follow-up questions in real-time.' },
-        { id: 'feature2', icon: 'fa-chart-bar', title: 'Behavioral Analysis', desc: 'Get insights on your body language, tone, and confidence levels with our advanced analysis.' },
-        { id: 'feature3', icon: 'fa-briefcase', title: 'Industry-Specific Scenarios', desc: 'Choose from hundreds of interview scenarios tailored to your target industry and role.' }
-      ].map((feature, index) => (
-        <div 
-          key={feature.id}
-          id={feature.id}
-          className={`fade-in bg-gray-800/70 backdrop-blur-sm rounded-2xl p-8 border border-gray-700/50 hover:border-purple-500/30 transition-all duration-400 hover:-translate-y-3 hover:shadow-2xl hover:shadow-purple-500/20 relative overflow-hidden group ${
-            isVisible[feature.id] ? 'visible' : ''
-          }`}
-        >
-          <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-teal-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-400"></div>
-          <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-teal-400 text-white rounded-2xl flex items-center justify-center text-2xl shadow-lg shadow-purple-500/30 mb-6 relative z-10">
-            <i className={`fas ${feature.icon}`}></i>
+      {/* Features Section */}
+      <section 
+        ref={featuresRef}
+        className="py-20 bg-gray-800/50 relative"
+      >
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold mb-4">Advanced AI Features</h2>
+            <p className="text-xl text-gray-400 max-w-2xl mx-auto">
+              Our platform offers cutting-edge technology to prepare you for any interview scenario
+            </p>
           </div>
-          <h3 className="text-xl font-bold mb-4 relative z-10">{feature.title}</h3>
-          <p className="text-gray-400 relative z-10">{feature.desc}</p>
-        </div>
-      ))}
-    </div>
+          
+          {/* Main Feature Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+            {[
+              { id: 'feature1', icon: 'fa-robot', title: 'Adaptive AI Interviewers', desc: 'Practice with AI that adapts to your responses, creating unique follow-up questions in real-time.' },
+              { id: 'feature2', icon: 'fa-chart-bar', title: 'Behavioral Analysis', desc: 'Get insights on your body language, tone, and confidence levels with our advanced analysis.' },
+              { id: 'feature3', icon: 'fa-briefcase', title: 'Industry-Specific Scenarios', desc: 'Choose from hundreds of interview scenarios tailored to your target industry and role.' }
+            ].map((feature, index) => (
+              <div 
+                key={feature.id}
+                id={feature.id}
+                className={`fade-in bg-gray-800/70 backdrop-blur-sm rounded-2xl p-8 border border-gray-700/50 hover:border-purple-500/30 transition-all duration-400 hover:-translate-y-3 hover:shadow-2xl hover:shadow-purple-500/20 relative overflow-hidden group ${
+                  isVisible[feature.id] ? 'visible' : ''
+                }`}
+              >
+                <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-teal-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-400"></div>
+                <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-teal-400 text-white rounded-2xl flex items-center justify-center text-2xl shadow-lg shadow-purple-500/30 mb-6 relative z-10">
+                  <i className={`fas ${feature.icon}`}></i>
+                </div>
+                <h3 className="text-xl font-bold mb-4 relative z-10">{feature.title}</h3>
+                <p className="text-gray-400 relative z-10">{feature.desc}</p>
+              </div>
+            ))}
+          </div>
 
-    {/* Feature Highlights */}
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 p-6 bg-gray-800/30 rounded-2xl border border-gray-700/50">
-      {[
-        {
-          icon: "fa-brain",
-          title: "AI-Powered Feedback",
-          description: "Real-time analysis of your interview performance"
-        },
-        {
-          icon: "fa-sync-alt",
-          title: "Unlimited Questions",
-          description: "AI generates fresh questions for every session"
-        },
-        {
-          icon: "fa-chart-line",
-          title: "Progress Tracking",
-          description: "Monitor your improvement over time"
-        }
-      ].map((feature, index) => (
-        <div key={index} className="text-center">
-          <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-teal-400 text-white rounded-xl flex items-center justify-center text-lg shadow-lg shadow-purple-500/30 mx-auto mb-3">
-            <i className={`fas ${feature.icon}`}></i>
+          {/* Feature Highlights */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 p-6 bg-gray-800/30 rounded-2xl border border-gray-700/50">
+            {[
+              {
+                icon: "fa-brain",
+                title: "AI-Powered Feedback",
+                description: "Real-time analysis of your interview performance"
+              },
+              {
+                icon: "fa-sync-alt",
+                title: "Unlimited Questions",
+                description: "AI generates fresh questions for every session"
+              },
+              {
+                icon: "fa-chart-line",
+                title: "Progress Tracking",
+                description: "Monitor your improvement over time"
+              }
+            ].map((feature, index) => (
+              <div key={index} className="text-center">
+                <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-teal-400 text-white rounded-xl flex items-center justify-center text-lg shadow-lg shadow-purple-500/30 mx-auto mb-3">
+                  <i className={`fas ${feature.icon}`}></i>
+                </div>
+                <h5 className="font-semibold text-white text-sm mb-1">{feature.title}</h5>
+                <p className="text-gray-400 text-xs">{feature.description}</p>
+              </div>
+            ))}
           </div>
-          <h5 className="font-semibold text-white text-sm mb-1">{feature.title}</h5>
-          <p className="text-gray-400 text-xs">{feature.description}</p>
         </div>
-      ))}
-    </div>
-  </div>
-</section>
-      {/* How It Works - Add ref */}
+      </section>
+
+      {/* How It Works */}
       <section 
         ref={howItWorksRef}
         className="py-20 bg-gray-900 relative"
@@ -417,7 +417,7 @@ const HeroSection = () => {
         </div>
       </section>
 
-      {/* Interview Demo Section - Add ref for try section */}
+      {/* Interview Demo Section */}
       <section 
         ref={tryRef}
         className="py-20 bg-gray-800/50 relative"
@@ -515,13 +515,13 @@ const HeroSection = () => {
                 </p>
               </div>
 
-              {/* Video Preview */}
+              {/* Video Preview - Mirrored */}
               <div className="relative bg-black rounded-xl overflow-hidden mb-4 aspect-video">
                 <video
                   ref={videoRef}
                   autoPlay
                   muted
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover scale-x-[-1]" // This mirrors the video
                 />
                 {isRecording && (
                   <div className="absolute top-4 right-4 flex items-center gap-2 bg-red-500/90 text-white px-3 py-1 rounded-full">
@@ -578,8 +578,7 @@ const HeroSection = () => {
                 {recordedAnswers[currentQuestion] && (
                   <button
                     onClick={() => {
-                      // Play recorded answer logic would go here
-                      alert('log in to use this feature');
+                      alert('Please sign in to review your recorded answers and get AI feedback');
                     }}
                     className="px-6 py-3 border border-teal-500 text-teal-400 rounded-lg font-semibold hover:bg-teal-500/10 transition-all duration-300"
                   >
@@ -607,11 +606,28 @@ const HeroSection = () => {
 
           {/* Action Buttons */}
           <div className="flex justify-center gap-4 mt-8">
-            <button className="px-6 py-3 border border-purple-500 text-purple-400 rounded-lg font-semibold hover:bg-purple-500/10 transition-all duration-300">
+            <button 
+              onClick={() => {
+                setCurrentQuestion(0);
+                setTimeLeft(180);
+                setIsRecording(false);
+                setRecordedAnswers([]);
+              }}
+              className="px-6 py-3 border border-purple-500 text-purple-400 rounded-lg font-semibold hover:bg-purple-500/10 transition-all duration-300"
+            >
               <i className="fas fa-redo mr-2"></i>
               Restart Simulation
             </button>
-            <button className="px-6 py-3 bg-gradient-to-r from-purple-500 to-teal-400 text-white rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
+            <button 
+              onClick={() => {
+                if (isSignedIn) {
+                  // Navigate to feedback page
+                } else {
+                  alert('Please sign in to access AI feedback and detailed analysis');
+                }
+              }}
+              className="px-6 py-3 bg-gradient-to-r from-purple-500 to-teal-400 text-white rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+            >
               <i className="fas fa-chart-line mr-2"></i>
               View AI Feedback
             </button>
@@ -690,10 +706,9 @@ const HeroSection = () => {
             className="px-8 py-4 bg-white text-purple-600 rounded-lg font-semibold text-lg shadow-lg hover:bg-gray-100 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
             onClick={() => handleButtonClick('Start Your Free Trial Now')}
           >
-            <Link href="/dashboard" className="block w-full h-full">
-                      Start Your Free Trial Now
+            <Link href="/sign-up" className="block w-full h-full">
+              Start Your Free Trial Now
             </Link>
-            
           </button>
         </div>
       </section>
@@ -771,5 +786,5 @@ const HeroSection = () => {
     </div>
   );
 };
-
+      
 export default HeroSection;
