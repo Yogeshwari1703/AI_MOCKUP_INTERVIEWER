@@ -89,56 +89,7 @@ const Header = () => {
             <div className="w-3 h-3 bg-gradient-to-br from-purple-500 to-teal-400 rounded-full animate-pulse"></div>
             <span className="text-sm">AI Powered</span>
           </div>
-          <UserButton 
-            appearance={{
-              elements: {
-                userButtonBox: "shadow-lg shadow-purple-500/20",
-                userButtonTrigger: "bg-gray-800/70 border border-purple-500/30 hover:bg-gray-700/70 transition-all duration-300",
-                userButtonAvatarBox: "w-10 h-10",
-                card: "bg-gray-800 border border-purple-500/30 shadow-2xl shadow-purple-500/20 rounded-2xl",
-                headerTitle: "text-white font-bold text-lg",
-                headerSubtitle: "text-gray-300",
-                menuItem: "text-gray-300 hover:text-white hover:bg-purple-500/20 transition-all duration-300 rounded-lg",
-                menuButton: "text-gray-300 hover:text-white hover:bg-purple-500/20 transition-all duration-300 rounded-lg",
-                menuList: "space-y-2 p-2",
-                actionButton: "text-gray-300 hover:text-white hover:bg-purple-500/20",
-                actionButtonText: "text-gray-300 hover:text-white",
-                footer: "hidden",
-                badge: "bg-gradient-to-r from-purple-500 to-teal-400 text-white",
-                identityPreview: "border-b border-gray-700 pb-4",
-                identityPreviewText: "text-white",
-                identityPreviewEditButton: "text-purple-400 hover:text-purple-300",
-                formFieldLabel: "text-white text-sm font-medium",
-                formFieldInput: "bg-gray-700/50 border border-gray-600 text-white placeholder-gray-400 rounded-lg focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 transition-all duration-300",
-                formFieldSuccess: "text-green-400",
-                formFieldError: "text-red-400",
-                formButtonPrimary: "bg-gradient-to-r from-purple-500 to-teal-400 text-white font-semibold rounded-lg shadow-lg shadow-purple-500/30 hover:shadow-xl transition-all duration-300",
-                formButtonReset: "text-gray-400 hover:text-white transition-colors duration-300 border border-gray-600 hover:border-gray-500",
-                socialButtonsBlockButton: "bg-gray-700/50 border border-gray-600 text-white hover:bg-gray-600/50 transition-all duration-300 rounded-lg",
-                socialButtonsBlockButtonText: "text-white text-sm",
-                socialButtonsProviderIcon: "filter-none opacity-100",
-                profileSectionPrimaryButton: "text-gray-300 hover:text-white hover:bg-purple-500/20",
-                profileSectionTitle: "text-white",
-                profileSectionContent: "text-gray-300",
-                accountSwitcherTrigger: "text-gray-300 hover:text-white",
-                accountSwitcherTriggerText: "text-gray-300 hover:text-white",
-              },
-              variables: {
-                colorPrimary: "#8b5cf6",
-                colorText: "#ffffff",
-                colorTextSecondary: "#d1d5db",
-                colorTextOnPrimaryBackground: "#ffffff",
-                colorBackground: "#1f2937",
-                colorInputBackground: "#374151",
-                colorInputText: "#ffffff",
-                colorSuccess: "#10b981",
-                colorDanger: "#ef4444",
-                colorWarning: "#f59e0b",
-                colorShimmer: "rgba(139, 92, 246, 0.1)",
-              }
-            }}
-            afterSignOutUrl="/"
-          />
+          <UserButton/>
         </div>
       </div>
 

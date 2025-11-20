@@ -253,7 +253,7 @@ const HeroSection = () => {
                     onClick={() => handleButtonClick('Sign Up Free')}
                   >
                     <Link href="/dashboard" className="block w-full h-full">
-                      Sign Up Free
+                      Sign Up 
                     </Link>
                   </button>
                 </>
@@ -284,7 +284,7 @@ const HeroSection = () => {
                   onClick={() => handleButtonClick('Start Free Trial')}
                 >
                   <Link href="/dashboard" className="block w-full h-full">
-                      Start Free Trial
+                      Start Interview
                    </Link>
                   
                 </button>

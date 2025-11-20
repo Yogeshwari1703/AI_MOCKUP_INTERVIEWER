@@ -13,11 +13,11 @@ const Dashboard = () => {
         <div className="bg-gray-800/70 backdrop-blur-sm rounded-2xl p-6 border border-purple-500/30 shadow-lg shadow-purple-500/10 hover:shadow-xl hover:shadow-purple-500/20 transition-all duration-300">
           <div className="flex items-center gap-4">
             <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-purple-600 text-white rounded-2xl flex items-center justify-center text-lg">
-              +
+              ∞
             </div>
             <div>
-              <h3 className="text-white font-semibold text-lg">Start New Interview</h3>
-              <p className="text-gray-400 text-sm">Create personalized questions</p>
+              <h3 className="text-white font-semibold text-lg">Practice unlimited interviews</h3>
+              <p className="text-gray-400 text-sm">Create personalized interview</p>
             </div>
           </div>
         </div>

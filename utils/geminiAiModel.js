@@ -116,6 +116,12 @@
 // main();
 
 
+
+
+
+
+
+
 const {
   GoogleGenerativeAI,
   HarmCategory,
@@ -163,3 +169,106 @@ export  const chatSession = model.startChat({
    
     
   });
+
+
+
+
+
+
+// const {
+//   GoogleGenerativeAI,
+//   HarmCategory,
+//   HarmBlockThreshold,
+// } = require("@google/generative-ai");
+
+// const apiKey = process.env.NEXT_PUBLIC_GEMINI_API_KEY;
+
+// // Check if API key is available
+// if (!apiKey) {
+//   console.error('❌ Gemini API key is missing. Please check your environment variables.');
+// }
+
+// const genAI = new GoogleGenerativeAI(apiKey);
+
+// // Use the latest working model - try these in order:
+// const model = genAI.getGenerativeModel({
+//   model: "gemini-1.5-flash-latest", // ✅ Most likely to work
+//   // model: "gemini-1.0-pro",        // ✅ Alternative
+//   // model: "gemini-pro",            // ✅ Another alternative
+// });
+
+// const generationConfig = {
+//   temperature: 0.7,  // Lower temperature for more consistent responses
+//   topP: 0.8,
+//   topK: 40,
+//   maxOutputTokens: 2048, // Reduced for faster responses
+// };
+
+// const safetySettings = [
+//   {
+//     category: HarmCategory.HARM_CATEGORY_HARASSMENT,
+//     threshold: HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE,
+//   },
+//   {
+//     category: HarmCategory.HARM_CATEGORY_HATE_SPEECH,
+//     threshold: HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE,
+//   },
+//   {
+//     category: HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT,
+//     threshold: HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE,
+//   },
+//   {
+//     category: HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT,
+//     threshold: HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE,
+//   },
+// ];
+
+// // Simple function to get AI responses
+// export const getAIResponse = async (prompt) => {
+//   try {
+//     console.log('🤖 Sending prompt to Gemini AI...');
+    
+//     const result = await model.generateContent({
+//       contents: [{ parts: [{ text: prompt }] }],
+//       generationConfig,
+//       safetySettings,
+//     });
+
+//     const response = await result.response;
+//     console.log('✅ AI Response received successfully');
+//     return response.text();
+
+//   } catch (error) {
+//     console.error('❌ Gemini AI Error:', error);
+    
+//     // Provide helpful error messages
+//     if (error.message?.includes('API_KEY_INVALID') || error.message?.includes('401')) {
+//       throw new Error('Invalid API key. Please check your Gemini API key in environment variables.');
+//     } else if (error.message?.includes('MODEL_NOT_FOUND') || error.message?.includes('404')) {
+//       throw new Error('AI model not available. The model might be deprecated or unavailable in your region.');
+//     } else if (error.message?.includes('QUOTA_EXCEEDED')) {
+//       throw new Error('API quota exceeded. Please check your Google Cloud quota.');
+//     } else if (error.message?.includes('503') || error.message?.includes('UNAVAILABLE')) {
+//       throw new Error('AI service temporarily unavailable. Please try again later.');
+//     } else {
+//       throw new Error(`AI service error: ${error.message}`);
+//     }
+//   }
+// };
+
+// // Keep chatSession for backward compatibility
+// export const chatSession = {
+//   sendMessage: async (prompt) => {
+//     const result = await model.generateContent({
+//       contents: [{ parts: [{ text: prompt }] }],
+//       generationConfig,
+//       safetySettings,
+//     });
+    
+//     return {
+//       response: {
+//         text: () => result.response.text()
+//       }
+//     };
+//   }
+// };
