@@ -266,7 +266,7 @@ export default function AboutPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-purple-500/10 to-teal-500/10">
+      {/* <section className="py-20 bg-gradient-to-r from-purple-500/10 to-teal-500/10">
         <div className="container mx-auto px-4 text-center">
           <div className="max-w-3xl mx-auto">
             <h2 className="text-4xl font-bold text-white mb-6">
@@ -297,10 +297,10 @@ export default function AboutPage() {
             </p>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Footer */}
-      <footer className="py-12 border-t border-gray-800">
+      {/* <footer className="py-12 border-t border-gray-800">
         <div className="container mx-auto px-4 text-center">
           <div className="flex items-center justify-center gap-2 mb-4">
             <Brain className="w-6 h-6 text-purple-400" />
@@ -311,7 +311,7 @@ export default function AboutPage() {
           </p>
           
         </div>
-      </footer>
+      </footer> */}
     </div>
   )
 }

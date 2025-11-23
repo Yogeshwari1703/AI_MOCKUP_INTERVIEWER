@@ -134,7 +134,7 @@ function Feedback({ params }) {
                           Question {index + 1}
                         </span>
                         <span className={`text-xs font-semibold px-3 py-1 rounded-full ${getRatingBg(item.rating)} ${getRatingColor(item.rating)}`}>
-                          {item.rating}/10
+                          {item.rating}
                         </span>
                       </div>
                       <p className="text-white text-sm leading-relaxed">{item.question}</p>

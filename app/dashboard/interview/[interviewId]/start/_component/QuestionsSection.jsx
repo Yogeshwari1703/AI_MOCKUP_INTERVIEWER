@@ -229,17 +229,40 @@ function QuestionsSection({ mockInterviewQuestion, activeQuestionIndex }) {
         </div>
       )}
 
-      {/* Note Section */}
-      <div className="bg-gradient-to-br from-yellow-500/10 to-yellow-600/5 rounded-xl p-5 border border-yellow-500/30">
-        <div className="flex items-center gap-3 mb-3">
-          <div className="w-8 h-8 bg-gradient-to-br from-yellow-500 to-yellow-400 text-white rounded-lg flex items-center justify-center text-xs shadow-lg shadow-yellow-500/30">
-            <Lightbulb className="w-4 h-4" />
-          </div>
-          <h4 className="text-yellow-400 font-semibold text-sm">Important Note</h4>
-        </div>
+      {/* Note Section - Clean */}
+<div className="bg-gradient-to-br from-yellow-500/10 to-yellow-600/5 rounded-xl p-4 border border-yellow-500/30">
+  <div className="flex items-start gap-3 mb-3">
+    <Lightbulb className="w-5 h-5 text-yellow-400 flex-shrink-0 mt-0.5" />
+    <div>
+      <h4 className="text-yellow-400 font-semibold text-sm mb-2">Recording Tips</h4>
+      <div className="space-y-2">
         <p className="text-yellow-300/80 text-sm leading-relaxed">
-          {process.env.NEXT_PUBLIC_QUESTION_NOTE || "Take your time to think before answering. Focus on clear communication and structure your responses effectively."}
+          {process.env.NEXT_PUBLIC_QUESTION_NOTE || "Take your time to think before answering. Focus on clear communication."}
         </p>
+        <p className="text-yellow-100 text-sm leading-relaxed ">
+          <span className="font-bold text-yellow-200">Network:</span> Use private network for reliable recording quality.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+      
+      
+
+      <div className="mt-4 p-4 bg-gray-700/30 rounded-lg border border-gray-600">
+        <h4 className="font-semibold text-teal-400 mb-2 flex items-center gap-2">
+          <i className="fas fa-lightbulb"></i>
+          Tips for better AI feedback
+        </h4>
+        <ul className="text-sm text-gray-300 space-y-1">
+          <li>• Speak clearly and at a moderate pace</li>
+          <li>• Structure your answer with clear points</li>
+          <li>• Provide specific examples when possible</li>
+          <li>• Aim for 30+ seconds of speaking for best analysis</li>
+          <li className="font-bold">• You only have one chance to record the answer use it wisely</li>
+        </ul>
       </div>
 
       {/* Add Font Awesome CSS */}
