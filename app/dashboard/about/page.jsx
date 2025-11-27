@@ -98,7 +98,7 @@ export default function AboutPage() {
               <Rocket className="w-8 h-8" />
             </div>
             <h1 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-purple-400 to-teal-300 bg-clip-text text-transparent mb-6">
-              About InterviewAI
+              About PrepNova
             </h1>
             <p className="text-xl text-gray-300 mb-8 leading-relaxed">
               Revolutionizing interview preparation with cutting-edge artificial intelligence. 
@@ -137,7 +137,7 @@ export default function AboutPage() {
                 the real pressure and unpredictability of actual interviews.
               </p>
               <p className="text-lg text-gray-300 mb-8">
-                InterviewAI bridges this gap by providing an intelligent platform that not only 
+                PrepNova bridges this gap by providing an intelligent platform that not only 
                 asks relevant questions but also adapts to your responses, providing a truly 
                 immersive preparation experience.
               </p>
@@ -164,7 +164,7 @@ export default function AboutPage() {
       <section className="py-20">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-white mb-4">Why Choose InterviewAI?</h2>
+            <h2 className="text-4xl font-bold text-white mb-4">Why Choose PrepNova?</h2>
             <p className="text-xl text-gray-400 max-w-2xl mx-auto">
               Our platform combines advanced AI technology with expert career guidance 
               to provide the most comprehensive interview preparation available.
@@ -304,7 +304,7 @@ export default function AboutPage() {
         <div className="container mx-auto px-4 text-center">
           <div className="flex items-center justify-center gap-2 mb-4">
             <Brain className="w-6 h-6 text-purple-400" />
-            <span className="text-xl font-bold text-white">InterviewAI</span>
+            <span className="text-xl font-bold text-white">PrepNova</span>
           </div>
           <p className="text-gray-400 mb-6">
             Empowering job seekers with AI-driven interview preparation

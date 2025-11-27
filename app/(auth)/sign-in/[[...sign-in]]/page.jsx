@@ -961,7 +961,7 @@ export default function Page() {
           </div>
           
           <h1 className="text-5xl font-bold bg-gradient-to-r from-gray-100 to-purple-300 bg-clip-text text-transparent">
-            InterviewAI
+            PrepNova
           </h1>
           <p className="text-xl text-gray-400 leading-relaxed">
             Master interviews with AI-powered simulations and get instant feedback to improve your skills.
@@ -1016,7 +1016,7 @@ export default function Page() {
           {/* Mobile Title */}
           <div className="lg:hidden text-center mb-6">
             <h1 className="text-3xl font-bold bg-gradient-to-r from-gray-100 to-purple-300 bg-clip-text text-transparent mb-2">
-              InterviewAI
+              PrepNova
             </h1>
             <p className="text-gray-400 text-sm">Sign in to master your interviews</p>
           </div>

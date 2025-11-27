@@ -124,7 +124,7 @@ const HeroSection = () => {
 
   const handleButtonClick = (buttonText) => {
     if (buttonText.includes('Sign Up') || buttonText.includes('Start Free Trial') || buttonText.includes('Try Demo')) {
-      // alert('Starting your InterviewAI experience...');
+      // alert('Starting your PrepNova experience...');
     } else if (buttonText.includes('Log In')) {
       // alert('Redirecting to login page...');
     } else if (buttonText.includes('Watch Demo')) {
@@ -187,7 +187,7 @@ const HeroSection = () => {
               onClick={(e) => handleNavClick('home', e)}
             >
               <i className="fas fa-robot text-purple-500 text-2xl"></i>
-              <span className="bg-gradient-to-r from-purple-500 to-teal-400 bg-clip-text text-transparent">InterviewAI</span>
+              <span className="bg-gradient-to-r from-purple-500 to-teal-400 bg-clip-text text-transparent">PrepNova</span>
             </a>
             
             <div className="hidden md:flex gap-8">
@@ -273,10 +273,10 @@ const HeroSection = () => {
           <div className="flex flex-col lg:flex-row items-center gap-16">
             <div className="flex-1">
               <h1 className="text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-gray-100 to-purple-300 bg-clip-text text-transparent leading-tight">
-                Master Interviews with AI-Powered Simulations
+                Turn Practice Into Perfection with PrepNova
               </h1>
               <p className="text-xl text-gray-400 mb-8 max-w-2xl">
-                InterviewAI uses advanced artificial intelligence to create realistic interview scenarios, provide instant feedback, and help you improve your interview skills with confidence.
+                PrepNova uses advanced artificial intelligence to create realistic interview scenarios, provide instant feedback, and help you improve your interview skills with confidence.
               </p>
               <div className="flex flex-wrap gap-4 mt-10">
                 <button 
@@ -625,28 +625,28 @@ const HeroSection = () => {
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold mb-4">Success Stories</h2>
             <p className="text-xl text-gray-400 max-w-2xl mx-auto">
-              Hear from users who landed their dream jobs with InterviewAI
+              Hear from users who landed their dream jobs with PrepNova
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               { 
                 id: 'testimonial1', 
-                text: "InterviewAI's AI interviewer was incredibly realistic. The feedback on my technical answers helped me identify weak spots I didn't even know I had.",
+                text: "PrepNova's AI interviewer was incredibly realistic. The feedback on my technical answers helped me identify weak spots I didn't even know I had.",
                 name: "Jessica Smith",
                 role: "Software Engineer at TechCorp",
                 initials: "JS"
               },
               { 
                 id: 'testimonial2', 
-                text: "As a non-native English speaker, I was nervous about interviews. InterviewAI's speech analysis helped me improve my communication skills dramatically.",
+                text: "As a non-native English speaker, I was nervous about interviews. PrepNova's speech analysis helped me improve my communication skills dramatically.",
                 name: "Ahmed Rahman",
                 role: "Product Manager at GlobalTech",
                 initials: "AR"
               },
               { 
                 id: 'testimonial3', 
-                text: "The industry-specific questions were spot on. I felt completely prepared and confident during my actual interviews thanks to InterviewAI.",
+                text: "The industry-specific questions were spot on. I felt completely prepared and confident during my actual interviews thanks to PrepNova.",
                 name: "Maria Perez",
                 role: "Marketing Director at BrandVision",
                 initials: "MP"
@@ -684,7 +684,7 @@ const HeroSection = () => {
         <div className="container mx-auto px-4 text-center relative z-10">
           <h2 className="text-4xl font-bold mb-6">Ready to Ace Your Next Interview?</h2>
           <p className="text-xl mb-8 max-w-2xl mx-auto opacity-90">
-            Join thousands of job seekers who have improved their interview skills with InterviewAI
+            Join thousands of job seekers who have improved their interview skills with PrepNova
           </p>
           <button 
             className="px-8 py-4 bg-white text-purple-600 rounded-lg font-semibold text-lg shadow-lg hover:bg-gray-100 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
@@ -703,7 +703,7 @@ const HeroSection = () => {
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
             <div>
-              <h3 className="text-xl font-bold mb-6 text-teal-400">InterviewAI</h3>
+              <h3 className="text-xl font-bold mb-6 text-teal-400">PrepNova</h3>
               <p className="text-gray-400 mb-6">
                 The most advanced AI-powered platform for interview preparation and skill development.
               </p>
@@ -751,7 +751,7 @@ const HeroSection = () => {
             </div>
           </div>
           <div className="pt-8 border-t border-gray-800 text-center text-gray-500 text-sm">
-            <p>&copy; 2023 InterviewAI. All rights reserved.</p>
+            <p>&copy; 2023 PrepNova. All rights reserved.</p>
           </div>
         </div>
       </footer>

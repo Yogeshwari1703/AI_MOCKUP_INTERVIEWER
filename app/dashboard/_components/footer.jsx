@@ -17,7 +17,7 @@ export default function Footer() {
               </div>
               <div>
                 <h3 className="text-xl font-bold bg-gradient-to-r from-purple-400 to-teal-300 bg-clip-text text-transparent">
-                  InterviewAI
+                  PrepNova
                 </h3>
                 <p className="text-gray-400 text-xs">Master Your Interviews</p>
               </div>
@@ -94,7 +94,7 @@ export default function Footer() {
                 </div>
                 <div>
                   <p className="text-white">Email Support</p>
-                  <p>support@interviewai.com</p>
+                  <p>support@PrepNova.com</p>
                 </div>
               </div>
               
@@ -123,7 +123,7 @@ export default function Footer() {
         <div className="pt-8 border-t border-gray-800">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <div className="text-gray-500 text-sm">
-              <p>&copy; {new Date().getFullYear()} InterviewAI. All rights reserved.</p>
+              <p>&copy; {new Date().getFullYear()} PrepNova. All rights reserved.</p>
             </div>
             
             <div className="flex gap-6 text-sm">
