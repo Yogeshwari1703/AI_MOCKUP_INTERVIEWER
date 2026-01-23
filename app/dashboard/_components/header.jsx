@@ -63,7 +63,7 @@ const Header = () => {
           </div>
           <div>
             <h2 className='bg-gradient-to-r from-purple-400 to-teal-300 bg-clip-text text-transparent text-2xl font-bold'>
-              InterviewAI
+              PrepNova
             </h2>
             <p className="text-gray-400 text-xs">Master Your Interviews</p>
           </div>

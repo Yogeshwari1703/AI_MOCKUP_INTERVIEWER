@@ -182,20 +182,7 @@ const HelpPage = () => {
               you'll always have unique, challenging scenarios to practice with.
             </p>
             
-            {/* Search Box */}
-            <div className="max-w-2xl mx-auto relative">
-              <input
-                type="text"
-                placeholder="Search for answers, guides, or contact support..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full px-6 py-4 bg-gray-800/50 border border-gray-700 rounded-2xl text-white placeholder-gray-400 focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 transition-all duration-300 text-lg"
-              />
-              <button className="absolute right-2 top-2 px-6 py-2 bg-gradient-to-r from-purple-500 to-teal-400 text-white rounded-xl font-semibold hover:shadow-lg transition-all duration-300">
-                <i className="fas fa-search mr-2"></i>
-                Find Answers
-              </button>
-            </div>
+            
           </section>
 
           {/* Stats Section */}
