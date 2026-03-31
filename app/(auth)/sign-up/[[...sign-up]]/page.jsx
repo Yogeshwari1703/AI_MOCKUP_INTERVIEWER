@@ -372,7 +372,7 @@ export default function Page() {
           </div>
           
           <h1 className="text-5xl font-bold bg-gradient-to-r from-gray-100 to-purple-300 bg-clip-text text-transparent">
-            Join InterviewAI
+            Join PrepNova
           </h1>
           <p className="text-xl text-gray-400 leading-relaxed">
             Start your journey to interview mastery with AI-powered simulations and personalized feedback.
@@ -433,7 +433,7 @@ export default function Page() {
           {/* Mobile Title */}
           <div className="lg:hidden text-center mb-6">
             <h1 className="text-3xl font-bold bg-gradient-to-r from-gray-100 to-purple-300 bg-clip-text text-transparent mb-2">
-              Join InterviewAI
+              Join PrepNova
             </h1>
             <p className="text-gray-400 text-sm">Create your account to get started</p>
           </div>
